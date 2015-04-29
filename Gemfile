@@ -4,6 +4,7 @@ group :development do
   gem 'minitest'
   gem 'guard'
   gem 'guard-minitest'
+  gem 'minitest-reporters'
 
   # OS X: Uncomment one of the following for visual notifications
   # gem 'growl'
