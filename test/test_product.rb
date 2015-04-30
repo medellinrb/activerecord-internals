@@ -16,6 +16,6 @@ class ProductTest < MiniTest::Test
     err = assert_raises RuntimeError do
       Product.find(999)
     end
-    assert_equal err.message, 'No hay empanadas!'
+    assert_equal err.message, 'EmpanadaRecordError: Record Not Found!'
   end
 end

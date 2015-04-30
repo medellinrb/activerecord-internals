@@ -9,7 +9,7 @@ module EmpanadaRecord
       if results.any?
         self.new(*results.first)
       else
-        raise 'No hay empanadas!'
+        raise 'EmpanadaRecordError: Record Not Found!'
       end
     end
 
