@@ -42,4 +42,16 @@ class ProductTest < MiniTest::Test
     assert_equal product.first.id, 20
   end
 
+  def test_find_by
+    products = Product.find_by("name", "Portatil")
+    assert_operator products.count, :>=, 1
+  end
+
+  def test_attributes
+    assert_equal Product.attributes.sort, ["id", "name"]
+  end
+
+  def test_respond_to?
+    assert_equal Product.respond_to?("name"), true
+  end
 end

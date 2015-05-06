@@ -4,6 +4,7 @@ module EmpanadaRecord
   class Base
     @@adapter = SqliteAdapter.new
 
+    # Finder methdos
     def self.find(id)
       results = @@adapter.run("SELECT * FROM #{table_name} WHERE id=#{id.to_i}")
       if results.any?
@@ -48,6 +49,29 @@ module EmpanadaRecord
 
     def self.table_name
       self.name + "s"
+    end
+
+    def self.find_by(attribute, data )
+      #Object.const_get("Product")
+      if respond_to?(attribute.to_s)
+        results = @@adapter.run("SELECT * FROM #{table_name} WHERE #{attribute} = '#{data}'")
+        if results.any?
+          results.map { |ary| self.new(*ary)}
+        else
+          raise 'EmpanadaRecordError: Record Not Found!'
+        end
+      else
+        raise "EmpanadaRecordError: undefined method '#{attribute}'"
+      end
+    end
+
+    def self.attributes
+      attrs = @@adapter.run("pragma table_info(#{table_name})")
+      attrs.map {|attr| attr[1]}
+    end
+
+    def self.respond_to?(attribute)
+      attributes.include? attribute
     end
   end
 end
