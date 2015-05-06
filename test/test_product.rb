@@ -23,4 +23,23 @@ class ProductTest < MiniTest::Test
     ids = Product.all.map { |p| p.id }
     assert_equal ids.sort, [10, 20]
   end
+
+  def test_count
+    count = Product.count
+    assert_equal count, 2
+  end
+
+  def test_first
+    assert_equal Product.first.id, 20
+  end
+
+  def test_last
+    assert_equal Product.last.id, 10
+  end
+
+  def test_where
+    product = Product.where("id = 20")
+    assert_equal product.first.id, 20
+  end
+
 end

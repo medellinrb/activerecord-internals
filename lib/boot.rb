@@ -5,4 +5,6 @@ require 'sqlite_adapter'
 require 'empanada_record'
 require "product"
 
-p Product.all
+p Product.first
+p Product.last
+p Product.where("id = 20")
