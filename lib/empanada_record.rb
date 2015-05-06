@@ -13,6 +13,11 @@ module EmpanadaRecord
       end
     end
 
+    def self.all
+      resultset = @@adapter.run("SELECT * FROM #{table_name}")
+      resultset.map { |ary| self.new(*ary)}
+    end
+
     def self.table_name
       self.name + "s"
     end

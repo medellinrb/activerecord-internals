@@ -18,4 +18,9 @@ class ProductTest < MiniTest::Test
     end
     assert_equal err.message, 'EmpanadaRecordError: Record Not Found!'
   end
+
+  def test_all
+    ids = Product.all.map { |p| p.id }
+    assert_equal ids.sort, [10, 20]
+  end
 end
