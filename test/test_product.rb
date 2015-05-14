@@ -13,9 +13,8 @@ class ProductTest < MiniTest::Test
   end
 
   def test_find_no_records
-    err = assert_raises RuntimeError do
-      Product.find(999)
-    end
-    assert_equal err.message, 'EmpanadaRecordError: Record Not Found!'
+    product = Product.find(9929)
+    assert_equal product.class, MissingEmpanadaRecord
+    assert_equal product.name, 'EmpanadaRecordError: Record Not Found!'    
   end
 end

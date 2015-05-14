@@ -1,4 +1,5 @@
 require 'sqlite_adapter'
+require 'missing_empanada_record'
 
 module EmpanadaRecord
   class Base
@@ -6,11 +7,7 @@ module EmpanadaRecord
     
     def self.find(id)
       results = @@adapter.run("SELECT * FROM #{table_name} WHERE id=#{id.to_i}")
-      if results.any?
-        self.new(*results.first)
-      else
-        raise 'EmpanadaRecordError: Record Not Found!'
-      end
+      results.any? ? self.new(*results.first) : MissingEmpanadaRecord.new
     end
 
     def self.table_name
