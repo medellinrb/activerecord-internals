@@ -1,6 +1,6 @@
 require 'sqlite_adapter'
 require 'missing_empanada_record'
-require 'missing_empanada_attribute'
+require 'empanada_record_attributes'
 
 module EmpanadaRecord
   class Base
@@ -39,7 +39,7 @@ module EmpanadaRecord
     end
 
     def self.where(args)
-      attributes = MissingEmpanadaAttribute.new(args.keys)
+      attributes = EmpanadaRecordAttributes.new(args.keys)
       valid_attributes = attributes.validate
       raise ArgumentError.new(valid_attributes) if valid_attributes.is_a? String
 

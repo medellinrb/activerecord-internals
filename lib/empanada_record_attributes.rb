@@ -1,4 +1,4 @@
-class MissingEmpanadaAttribute
+class EmpanadaRecordAttributes
   attr_accessor :attributes
   ATTRIBUTES = ['id', 'name']
 
@@ -11,7 +11,7 @@ class MissingEmpanadaAttribute
     invalid_attributes.any? ? invalid_attributes_message(invalid_attributes) : true
   end
 
-  def invalid_attributes_message(attributes_names)
-    "Next attributes doesn't exist: #{attributes_names.join(',')}"
+  def invalid_attributes_message(attributes)
+    "Next attributes doesn't exist: #{attributes.join(',')}"
   end
 end
